@@ -50,7 +50,7 @@ namespace LightAmumu.MenuList
             _withW = Menu.Add("useW", new CheckBox("W"));
             _withE = Menu.Add("useE", new CheckBox("E"));
             _withR = Menu.Add("useR", new CheckBox("R"));
-            _withIgnite = Menu.Add("useIgnite", new CheckBox("Ignite"));
+            _withIgnite = Menu.Add("useIgnite", new CheckBox("Use ignite"));
             Menu.AddSeparator();
             _countEnemiesInR = Menu.Add("countEnimiesInR", new Slider("Count enemies in R", 3, 1, 5));
         }

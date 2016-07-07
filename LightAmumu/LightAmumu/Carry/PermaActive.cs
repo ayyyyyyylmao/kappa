@@ -21,7 +21,6 @@ namespace LightAmumu.Carry
                 if (monsters == 0 && enemies == 0)
                     Damage.WDisable();
             }
-            ////
         }
     }
 }

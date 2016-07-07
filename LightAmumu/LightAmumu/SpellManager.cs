@@ -3,11 +3,15 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using SharpDX;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LightAmumu
 {
     public static class SpellManager
     {
+        public static Spell.Targeted Ignite;
+        public static bool PlayerHasIgnite;
+
         public static Spell.Skillshot Q { get; private set; }
         public static Spell.Active W { get; private set; }
         public static Spell.Active E { get; private set; }
@@ -22,6 +26,13 @@ namespace LightAmumu
             W = new Spell.Active(SpellSlot.W, 300);
             E = new Spell.Active(SpellSlot.E, 350);
             R = new Spell.Active(SpellSlot.R, 550);
+
+            var ignite = Player.Spells.FirstOrDefault(s => s.Name.ToLower().Contains("summonerdot"));
+            if (ignite != null)
+            {
+                Ignite = new Spell.Targeted(ignite.Slot, 600);
+                PlayerHasIgnite = true;
+            }
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

@@ -3,6 +3,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
 using System;
+using System.Linq;
 
 namespace LightAmumu
 {
@@ -38,6 +39,12 @@ namespace LightAmumu
             return 0;
         }
 
+        public static float GetTotalDamage(Obj_AI_Base target)
+        {
+            var damage = Player.Spells.Where(s => (s.Slot == SpellSlot.Q || s.Slot == SpellSlot.W || s.Slot == SpellSlot.E || s.Slot == SpellSlot.R) && s.IsReady).Sum(s => Player.Instance.GetSpellDamage(target, s.Slot));
+            return (damage + Player.Instance.GetAutoAttackDamage(target)) - 10;
+        }
+
         public void Dispose()
         {
         }
@@ -68,12 +75,6 @@ namespace LightAmumu
             dmg += GetEDamage(target);
             dmg += GetRDamage(target);
             return dmg;
-        }
-
-        public static int GetMaxSummonerSpellDamage(Obj_AI_Base target)
-        {
-            //TODO
-            return 0;
         }
 
         public static bool WStatus()

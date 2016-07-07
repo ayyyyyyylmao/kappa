@@ -83,6 +83,7 @@
     <Compile Include="Carry\JungleClear.cs" />
     <Compile Include="Carry\ModeBase.cs" />
     <Compile Include="Carry\PermaActive.cs" />
+    <Compile Include="MenuList\Mana.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="DrawingMenu.cs" />
     <Compile Include="MenuList\Misc.cs" />

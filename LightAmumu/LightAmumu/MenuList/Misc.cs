@@ -7,6 +7,7 @@ namespace LightAmumu.MenuList
     {
         private static readonly Menu Menu;
         private static readonly CheckBox _smartW;
+        private static readonly CheckBox _harassE;
         private static readonly CheckBox _HealthbarEnabled;
         private static readonly Slider _predQ;
 
@@ -25,9 +26,17 @@ namespace LightAmumu.MenuList
             get { return _HealthbarEnabled.CurrentValue; }
         }
 
+        public static bool IsHarassEnabled
+        {
+            get { return _harassE.CurrentValue; }
+        }
+
         static Misc()
         {
             Menu = DrawingMenu.Menu.AddSubMenu("Misc");
+            Menu.AddGroupLabel("Misc settings");
+            _harassE = Menu.Add("harassE", new CheckBox("Use E in harass mode."));
+            Menu.AddSeparator();
             _smartW = Menu.Add("smartW", new CheckBox("Automatic disable W (Smart)"));
             Menu.AddSeparator();
             _predQ = Menu.Add("predQ", new Slider("Q Prediction", 90, 1, 100));

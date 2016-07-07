@@ -16,9 +16,13 @@ namespace LightAmumu.Carry
             int minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(W.Range)).Count();
             if (minions != 0)
             {
-                if (MenuList.Farm.WithW)
-                    Damage.WEnable();
-                if (MenuList.Farm.WithE)
+                if (Damage.WStatus() == true && Player.Instance.ManaPercent < MenuList.Mana.minLnW)
+                    Damage.WDisable();
+                else
+                    if (MenuList.Farm.WithW && Player.Instance.ManaPercent >= MenuList.Mana.minLnW)
+                        Damage.WEnable();
+
+                if (MenuList.Farm.WithE && Player.Instance.ManaPercent >= MenuList.Mana.minLnE)
                 {
                     var minion = EntityManager.MinionsAndMonsters.EnemyMinions;
                     foreach (var select in minion)

@@ -28,6 +28,7 @@ namespace LightAmumu
                 Drawing.Initialize();
                 Farm.Initialize();
                 Misc.Initialize();
+                Mana.Initialize();
             }
 
             public static void Initialize()

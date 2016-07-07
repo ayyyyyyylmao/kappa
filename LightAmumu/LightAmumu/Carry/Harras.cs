@@ -15,9 +15,12 @@ namespace LightAmumu.Carry
 
         public override void Execute()
         {
-            foreach (var target in EntityManager.Heroes.Enemies.Where(target => target.IsValidTarget(E.Range)))
+            if (MenuList.Misc.IsHarassEnabled && Player.Instance.ManaPercent >= MenuList.Mana.minHarassE)
             {
-                E.Cast();
+                foreach (var target in EntityManager.Heroes.Enemies.Where(target => target.IsValidTarget(E.Range)))
+                {
+                    E.Cast();
+                }
             }
         }
     }

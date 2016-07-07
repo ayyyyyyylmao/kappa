@@ -20,6 +20,15 @@ namespace LightAmumu.Carry
                     Q.Cast(qPred.CastPosition);
             }
 
+            if (SpellManager.PlayerHasIgnite)
+            {
+                var predictedHealth = Prediction.Health.GetPrediction(target, Game.Ping);
+                if (predictedHealth <= Damage.GetTotalDamage(target) + Damage.GetIgniteDamage() && target.IsValidTarget(SpellManager.Ignite.Range) && SpellManager.Ignite.IsReady() && predictedHealth > Damage.GetIgniteDamage())
+                {
+                    SpellManager.Ignite.Cast(target);
+                }
+            }
+
             if (R.IsReady() && MenuList.Combo.WithR)
                 if (Player.Instance.CountEnemiesInRange(R.Range) >= MenuList.Combo.CountEnemiesInR)
                     R.Cast();
