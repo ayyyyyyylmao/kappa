@@ -2,6 +2,7 @@
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
+using EloBuddy.SDK.Rendering;
 using EloBuddy.SDK.Utils;
 using LightAmumu.Carry;
 using SharpDX;
@@ -89,14 +90,30 @@ namespace LightAmumu
         {
             if (Player.Instance.IsDead)
                 return;
-            if (MenuList.Drawing.DrawQ)
-                Drawing.DrawCircle(Player.Instance.Position, SpellManager.Q.Range, Color.LimeGreen);
-            if (MenuList.Drawing.DrawW)
-                Drawing.DrawCircle(Player.Instance.Position, SpellManager.W.Range, Color.CornflowerBlue);
-            if (MenuList.Drawing.DrawE)
-                Drawing.DrawCircle(Player.Instance.Position, SpellManager.E.Range, Color.YellowGreen);
-            if (MenuList.Drawing.DrawR)
-                Drawing.DrawCircle(Player.Instance.Position, SpellManager.R.Range, Color.OrangeRed);
+
+            foreach (var spell in SpellManager.AllSpells) // ty Hellsing Kappa
+            {
+                switch (spell.Slot)
+                {
+                    case SpellSlot.Q:
+                        if (!MenuList.Drawing.DrawQ)
+                            continue;
+                        break;
+                    case SpellSlot.W:
+                        if (!MenuList.Drawing.DrawW)
+                            continue;
+                        break;
+                    case SpellSlot.E:
+                        if (!MenuList.Drawing.DrawE)
+                            continue;
+                        break;
+                    case SpellSlot.R:
+                        if (!MenuList.Drawing.DrawR)
+                            continue;
+                        break;
+                }
+                Circle.Draw(spell.GetColor(), spell.Range, Player.Instance);
+            }
         }
 
         private static void OnTick(EventArgs args)
