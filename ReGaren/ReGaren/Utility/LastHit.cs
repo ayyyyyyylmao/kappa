@@ -13,14 +13,14 @@ namespace ReGaren.Utility
             if (ConfigList.Farm.FarmQLastHit && SpellManager.Q.IsReady())
             {
                 var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
-                if (target == null)
+                if (target.Count() == 0)
                     target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range * 2));
 
                 if (target != null)
                 {
                     foreach (var select in target)
                     {
-                        if (select.IsValidTarget(SpellManager.E.Range) && select.Health < Damage.GetQDamage(select))
+                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
                         {
                             SpellManager.Q.Cast();
                             Player.IssueOrder(GameObjectOrder.AttackUnit, select);

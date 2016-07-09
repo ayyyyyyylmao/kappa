@@ -38,7 +38,7 @@ namespace ReGaren
 
         private static void OnEndScene(EventArgs args)
         {
-            if (Player.Instance.IsDead)
+            if (Player.Instance.IsDead || !ConfigList.Drawing.DrawDI)
                 return;
 
             Indicator.Execute();

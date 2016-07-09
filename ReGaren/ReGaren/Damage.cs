@@ -40,6 +40,7 @@ namespace ReGaren
             damage += GetWDamage(target);
             damage += GetEDamage(target);
             damage += GetRDamage(target);
+            damage += Player.Instance.GetAutoAttackDamage(target, true);
             return damage;
         }
     }
