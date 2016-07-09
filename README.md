@@ -2,5 +2,14 @@
 #LightAmumu
 Fixed version of https://github.com/Sunnyline2/EloBuddy-Addons Kappa 
 
-#Sorakinha
-Fixed version of https://github.com/lKk2/EloBuddy
+#ReGaren
+My first own addon for Garen.
+
+Included
+- Combo QWER
+- Flee Q
+- Harass Q -> AA
+- Indicator
+- KS with R
+- Skin Manager
+- Lane & Jungle clear
