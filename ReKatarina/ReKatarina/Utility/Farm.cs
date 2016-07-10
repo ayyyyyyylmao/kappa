@@ -20,7 +20,7 @@ namespace ReKatarina.Utility
                     return;
 
                 var unit = target.FirstOrDefault();
-                if (unit.Health <= Damage.GetWDamage(unit) || unit.Health / Damage.GetWDamage(unit) > 2)
+                if (unit.Health <= Damage.GetWDamage(unit) || unit.Health / Damage.GetWDamage(unit) > 2 && Player.Instance.IsInRange(unit, SpellManager.W.Range))
                     SpellManager.W.Cast();
             }
             if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())

@@ -62,6 +62,7 @@
     <Compile Include="ConfigList\Flee.cs" />
     <Compile Include="ConfigList\Harass.cs" />
     <Compile Include="ConfigList\Misc.cs" />
+    <Compile Include="ConfigList\WardJump.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

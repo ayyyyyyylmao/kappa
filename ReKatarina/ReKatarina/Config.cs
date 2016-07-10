@@ -27,6 +27,7 @@ namespace ReKatarina
                 Drawing.Initialize();
                 Farm.Initialize();
                 Flee.Initialize();
+                WardJump.Initialize();
                 Misc.Initialize();
             }
 
