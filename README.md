@@ -1,6 +1,23 @@
 # EloBuddy-Addons
-#LightAmumu
-Fixed version of https://github.com/Sunnyline2/EloBuddy-Addons Kappa 
+#ReKalista
+My second own addon for EloBuddy (Katarina). Now it is pre-release, i don't recommend to use it. Kappa
+
+Included
+- Combo with QWER (customize)
+- Lane clear with QW (customize)
+- Jungle clear with QW (customize)
+- Last hit with QW
+- Harass mode with QW
+- Damage indicator
+- Skin manager
+- Drawings QWER (customize)
+- Min. enemies to use R
+- My own E logic
+- Min. range to use R
+- Safe combo (customize)
+- Humanizer QWER (customize)
+- WardJump (TODO)
+- Flee mode (TODO)
 
 #ReGaren
 My first own addon for Garen.
@@ -15,4 +32,8 @@ Included
 - Damage indicator
 - Skin manager
 - Drawings QER (customize)
-- Auto KS with R (customize
+- Auto KS with R (customize)
+- Little humanizer
+
+#LightAmumu
+Fixed version of https://github.com/Sunnyline2/EloBuddy-Addons Kappa 
