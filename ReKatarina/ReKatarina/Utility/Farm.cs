@@ -4,13 +4,13 @@ using System;
 using System.Linq;
 using EloBuddy.SDK.Enumerations;
 
-namespace ReGaren.Utility
+namespace ReKatarina.Utility
 {
     public static class Farm
     {
         public static void Execute()
         {
-            if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())
+            /*if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())
             {
                 var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
                 if (target.Count() == 0)
@@ -54,7 +54,7 @@ namespace ReGaren.Utility
 
                 if (minions >= ConfigList.Farm.FarmECount || (monsters > 0 && ConfigList.Farm.FarmEIgnore))
                     SpellManager.E.Cast();
-            }
+            }*/
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ReGaren.Utility
                         if (!ConfigList.Combo.ComboE)
                             continue;
 
-                        if (SpellManager.E.IsReady())
+                        if (SpellManager.E.IsReady() && !SpellManager.Q.IsReady())
                             Core.DelayAction(() => SpellManager.E.Cast(), ConfigList.Misc.GetSpellDelay - 50);
                         break;
                     }
