@@ -10,51 +10,36 @@ namespace ReKatarina.Utility
     {
         public static void Execute()
         {
-            /*if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())
+            if (ConfigList.Farm.FarmW && SpellManager.W.IsReady())
             {
-                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
+                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.W.Range * 2));
                 if (target.Count() == 0)
-                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range * 2));
+                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.W.Range * 2));
 
-                if (target.Count() != 0)
-                {
-                    foreach (var select in target)
-                    {
-                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
-                        {
-                            SpellManager.Q.Cast();
-                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
-                            return;
-                        }
-                        else
-                        {
-                            if (select.Health - Damage.GetQDamage(select) > 300 && select.IsValidTarget(SpellManager.Q.Range))
-                            {
-                                SpellManager.Q.Cast();
-                                Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
-                                return;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (Player.Instance.IsUnderEnemyturret())
-                    {
-                        SpellManager.Q.Cast();
-                    }
-                }
-            }
-            if (ConfigList.Farm.FarmE && SpellManager.E.IsReady())
-            {
-                int minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.E.Range)).Count();
-                int monsters = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.E.Range * 2)).Count();
-                if ((minions + monsters) == 0)
+                if (target == null)
                     return;
 
-                if (minions >= ConfigList.Farm.FarmECount || (monsters > 0 && ConfigList.Farm.FarmEIgnore))
-                    SpellManager.E.Cast();
-            }*/
+                var unit = target.FirstOrDefault();
+                if (unit.Health <= Damage.GetWDamage(unit) || unit.Health / Damage.GetWDamage(unit) > 2)
+                    SpellManager.W.Cast();
+            }
+            if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())
+            {
+                var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range));
+                var monsters = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range));
+                if ((minions.Count() + monsters.Count()) == 0)
+                    return;
+
+                var target = monsters;
+                if (monsters.Count() == 0)
+                    target = minions;
+
+                if (target == null)
+                    return;
+
+                if (minions.Count() >= ConfigList.Farm.FarmQCount || (monsters.Count() > 0 && ConfigList.Farm.FarmQIgnore))
+                    Core.DelayAction(() => SpellManager.Q.Cast(target.FirstOrDefault()), ConfigList.Misc.GetSpellDelay + Damage.GetAditionalDelay());
+            }
         }
     }
 }

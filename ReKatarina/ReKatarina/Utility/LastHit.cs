@@ -10,25 +10,42 @@ namespace ReKatarina.Utility
     {
         public static void Execute()
         {
-            /*if (ConfigList.Farm.FarmQLastHit && SpellManager.Q.IsReady())
+            if (ConfigList.Farm.LastHitQ && SpellManager.Q.IsReady())
             {
-                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
+                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range));
                 if (target.Count() == 0)
-                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range * 2));
+                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range));
 
                 if (target != null)
                 {
                     foreach (var select in target)
                     {
-                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
+                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health <= Damage.GetQDamage(select))
                         {
-                            SpellManager.Q.Cast();
-                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
+                            Core.DelayAction(() => SpellManager.Q.Cast(select), ConfigList.Misc.GetSpellDelay);
                             return;
                         }
                     }
                 }
-            }*/
+            }
+            if (ConfigList.Farm.LastHitW && SpellManager.W.IsReady())
+            {
+                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.W.Range));
+                if (target.Count() == 0)
+                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.W.Range));
+
+                if (target != null)
+                {
+                    foreach (var select in target)
+                    {
+                        if (select.IsValidTarget(SpellManager.W.Range) && select.Health <= Damage.GetWDamage(select))
+                        {
+                            Core.DelayAction(() => SpellManager.W.Cast(), ConfigList.Misc.GetSpellDelay + Game.Ping);
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 }
