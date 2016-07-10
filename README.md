@@ -1,5 +1,5 @@
 # EloBuddy-Addons
-#ReKalista
+#ReKatarina
 My second own addon for EloBuddy (Katarina). Now it is pre-release, i don't recommend to use it. Kappa
 
 Included
