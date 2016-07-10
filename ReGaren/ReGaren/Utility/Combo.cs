@@ -24,7 +24,7 @@ namespace ReGaren.Utility
                         if (SpellManager.Q.IsReady())
                         {
                             SpellManager.Q.Cast();
-                            Player.IssueOrder(GameObjectOrder.AttackUnit, target);
+                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, target), ConfigList.Misc.GetSpellDelay);
                         }
                         break;
                     }
@@ -34,7 +34,7 @@ namespace ReGaren.Utility
                             continue;
 
                         if (SpellManager.W.IsReady())
-                            SpellManager.W.Cast();
+                            Core.DelayAction(() => SpellManager.W.Cast(), ConfigList.Misc.GetSpellDelay - 25);
                         break;
                     }
                     case SpellSlot.E:
@@ -43,7 +43,7 @@ namespace ReGaren.Utility
                             continue;
 
                         if (SpellManager.E.IsReady())
-                            SpellManager.E.Cast();
+                            Core.DelayAction(() => SpellManager.E.Cast(), ConfigList.Misc.GetSpellDelay - 50);
                         break;
                     }
                     case SpellSlot.R:

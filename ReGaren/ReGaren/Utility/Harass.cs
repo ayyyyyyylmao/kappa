@@ -17,7 +17,7 @@ namespace ReGaren.Utility
             if (target != null)
             {
                 SpellManager.Q.Cast();
-                Player.IssueOrder(GameObjectOrder.AttackUnit, target);
+                Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, target), ConfigList.Misc.GetSpellDelay);
             }
         }
     }

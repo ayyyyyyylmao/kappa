@@ -23,7 +23,7 @@ namespace ReGaren.Utility
                         if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
                         {
                             SpellManager.Q.Cast();
-                            Player.IssueOrder(GameObjectOrder.AttackUnit, select);
+                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
                             return;
                         }
                         else
@@ -31,7 +31,7 @@ namespace ReGaren.Utility
                             if (select.Health - Damage.GetQDamage(select) > 300 && select.IsValidTarget(SpellManager.Q.Range))
                             {
                                 SpellManager.Q.Cast();
-                                Player.IssueOrder(GameObjectOrder.AttackUnit, select);
+                                Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
                                 return;
                             }
                         }

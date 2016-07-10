@@ -10,6 +10,7 @@ namespace ReGaren.ConfigList
         private static readonly CheckBox _FleeWithQ;
         private static readonly CheckBox _SkinManagerStatus;
         private static readonly Slider _SkinManager;
+        private static readonly Slider _Delay;
 
         public static bool KSWithR
         {
@@ -27,6 +28,10 @@ namespace ReGaren.ConfigList
         {
             get { return _SkinManager.CurrentValue; }
         }
+        public static int GetSpellDelay
+        {
+            get { return _Delay.CurrentValue; }
+        }
 
         static Misc()
         {
@@ -37,6 +42,8 @@ namespace ReGaren.ConfigList
             Menu.AddGroupLabel("Skin manager");
             _SkinManagerStatus = Menu.Add("SkinManagerStatus", new CheckBox("Enable skin changer."));
             _SkinManager = Menu.Add("SkinManager", new Slider("Select your skin.", 1, 0, 8));
+            Menu.AddGroupLabel("Delayer");
+            _Delay = Menu.Add("SkinManager", new Slider("Select your delay between AA in (ms).", 125, 50, 300));
         }
 
         public static void Initialize()
