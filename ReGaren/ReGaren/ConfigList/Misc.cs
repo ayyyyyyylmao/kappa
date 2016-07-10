@@ -43,7 +43,7 @@ namespace ReGaren.ConfigList
             _SkinManagerStatus = Menu.Add("SkinManagerStatus", new CheckBox("Enable skin changer."));
             _SkinManager = Menu.Add("SkinManager", new Slider("Select your skin.", 1, 0, 8));
             Menu.AddGroupLabel("Delayer");
-            _Delay = Menu.Add("SkinManager", new Slider("Select your delay between AA in (ms).", 125, 50, 300));
+            _Delay = Menu.Add("Delay", new Slider("Select your delay between AA in (ms).", 125, 50, 300));
         }
 
         public static void Initialize()
