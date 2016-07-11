@@ -11,6 +11,7 @@ namespace ReKatarina.ConfigList
         private static readonly CheckBox _drawE;
         private static readonly CheckBox _drawR;
         private static readonly CheckBox _drawDI;
+        private static readonly CheckBox _drawCJ;
 
         public static bool DrawQ
         {
@@ -36,6 +37,10 @@ namespace ReKatarina.ConfigList
         {
             get { return _drawDI.CurrentValue; }
         }
+        public static bool DrawCJ
+        {
+            get { return _drawCJ.CurrentValue; }
+        }
 
         static Drawing()
         {
@@ -47,6 +52,8 @@ namespace ReKatarina.ConfigList
             _drawR = Menu.Add("DrawR", new CheckBox("Draw R range"));
             Menu.AddGroupLabel("Damage indicator");
             _drawDI = Menu.Add("DrawDI", new CheckBox("Draw Damage Indicator"));
+            Menu.AddGroupLabel("Cursor jump range");
+            _drawCJ = Menu.Add("DrawCJ", new CheckBox("Draw circle around mouse with range of flee / ward jump."));
         }
 
         public static void Initialize()

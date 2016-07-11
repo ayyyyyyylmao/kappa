@@ -17,6 +17,7 @@ namespace ReKatarina
         public static bool PlayerHasIgnite = true;
         public static bool CastingUlt = false;
         public static int LastUltCast = 0;
+        public static int LastJumpCast = 0;
 
         public static List<Spell.SpellBase> AllSpells { get; private set; }
         public static Dictionary<SpellSlot, Color> ColorTranslation { get; private set; }

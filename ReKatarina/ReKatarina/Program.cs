@@ -75,12 +75,19 @@ namespace ReKatarina
             {
                 Flee.Execute();
             }
+            if (ConfigList.WardJump.WardJumpKey)
+            {
+                WardJump.Execute();
+            }
         }
-        
+
         private static void OnDraw(EventArgs args)
         {
             if (Player.Instance.IsDead)
                 return;
+
+            if (Game.CursorPos.IsValid() && ConfigList.Drawing.DrawCJ)
+                Circle.Draw(SharpDX.Color.Aqua, ConfigList.Flee.JumpCursorRange, Game.CursorPos);
 
             foreach (var spell in SpellManager.AllSpells)
             {

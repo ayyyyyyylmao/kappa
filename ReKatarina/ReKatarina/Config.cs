@@ -26,6 +26,7 @@ namespace ReKatarina
                 Combo.Initialize();
                 Drawing.Initialize();
                 Farm.Initialize();
+                Harass.Initialize();
                 Flee.Initialize();
                 WardJump.Initialize();
                 Misc.Initialize();

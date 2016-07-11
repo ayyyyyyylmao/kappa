@@ -54,7 +54,6 @@ namespace ReKatarina
 
         public static bool HasRBuff()
         {
-            //return Player.HasBuff("KatarinaR") || Player.Instance.Spellbook.IsChanneling || Player.HasBuff("katarinarsound") || SpellManager.CastingUlt;
             return SpellManager.CastingUlt;
         }
 

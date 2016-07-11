@@ -28,7 +28,7 @@ namespace ReKatarina.Utility
 
             if (ConfigList.Combo.ComboW && !Damage.HasRBuff())
                 if (SpellManager.W.IsReady() && Player.Instance.IsInRange(target, SpellManager.W.Range))
-                    Core.DelayAction(() => SpellManager.W.Cast(), (int)(delay * 1.5));
+                    Core.DelayAction(() => SpellManager.W.Cast(), delay*2);
 
             if (ConfigList.Combo.ComboR && Player.Instance.CountEnemiesInRange(SpellManager.R.Range) >= ConfigList.Combo.MinToUseR)
                 if (SpellManager.R.IsReady() && Player.Instance.IsInRange(target, ConfigList.Combo.MaxRCastRange))
@@ -37,8 +37,8 @@ namespace ReKatarina.Utility
                         return;
 
                     Core.DelayAction(() => Damage.UnfreezePlayer(), 2500);
-                    Core.DelayAction(() => SpellManager.R.Cast(), (int)(delay*1.75));
-                    Core.DelayAction(() => Damage.FreezePlayer(), (int)(delay*1.75));
+                    Core.DelayAction(() => SpellManager.R.Cast(), delay * 3);
+                    Core.DelayAction(() => Damage.FreezePlayer(), delay * 3);
                 }
 
             // Resets logic 

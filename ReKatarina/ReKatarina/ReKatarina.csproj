@@ -74,6 +74,7 @@
     <Compile Include="Utility\Indicator.cs" />
     <Compile Include="Utility\LastHit.cs" />
     <Compile Include="Utility\PermaActive.cs" />
+    <Compile Include="Utility\WardJump.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
