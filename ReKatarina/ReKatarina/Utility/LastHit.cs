@@ -20,7 +20,7 @@ namespace ReKatarina.Utility
                 {
                     foreach (var select in target)
                     {
-                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health <= Damage.GetQDamage(select))
+                        if (select.IsValidTarget(SpellManager.Q.Range) && select.TotalShieldHealth() <= Damage.GetQDamage(select))
                         {
                             Core.DelayAction(() => SpellManager.Q.Cast(select), ConfigList.Misc.GetSpellDelay);
                             return;
@@ -38,7 +38,7 @@ namespace ReKatarina.Utility
                 {
                     foreach (var select in target)
                     {
-                        if (select.IsValidTarget(SpellManager.W.Range) && select.Health <= Damage.GetWDamage(select))
+                        if (select.IsValidTarget(SpellManager.W.Range) && select.TotalShieldHealth() <= Damage.GetWDamage(select))
                         {
                             Core.DelayAction(() => SpellManager.W.Cast(), ConfigList.Misc.GetSpellDelay + Game.Ping);
                             return;

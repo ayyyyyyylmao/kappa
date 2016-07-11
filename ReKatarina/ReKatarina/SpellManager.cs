@@ -1,9 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using EloBuddy.SDK.Enumerations;
 using SharpDX;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ReKatarina
 {
@@ -28,9 +26,6 @@ namespace ReKatarina
             W = new Spell.Active(SpellSlot.W, 400);
             E = new Spell.Targeted(SpellSlot.E, 700);
             R = new Spell.Active(SpellSlot.R, 550);
-            Ignite = new Spell.Targeted(Player.Instance.FindSummonerSpellSlotFromName("ignite"), 550);
-            if (Player.Instance.FindSummonerSpellSlotFromName("ignite") == SpellSlot.Unknown)
-                PlayerHasIgnite = false;
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

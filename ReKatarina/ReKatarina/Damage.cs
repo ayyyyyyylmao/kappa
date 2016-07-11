@@ -1,12 +1,12 @@
-﻿using System;
-using EloBuddy;
+﻿using EloBuddy;
 using EloBuddy.SDK;
+using System;
 
 namespace ReKatarina
 {
     class Damage
     {
-        private static readonly Random getrandom = new Random();
+        public static readonly Random getrandom = new Random();
 
         public static double GetQDamage(Obj_AI_Base target)
         {

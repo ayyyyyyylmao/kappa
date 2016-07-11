@@ -1,15 +1,9 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
-using EloBuddy.SDK.Utils;
-using SharpDX;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Color = System.Drawing.Color;
 using ReKatarina.Utility;
+using System;
 
 namespace ReKatarina
 {

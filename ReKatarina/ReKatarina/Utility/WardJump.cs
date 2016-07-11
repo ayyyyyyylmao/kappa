@@ -1,9 +1,8 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using System;
-using System.Linq;
-using EloBuddy.SDK.Enumerations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ReKatarina.Utility
 {
@@ -15,8 +14,7 @@ namespace ReKatarina.Utility
         {
             wards.Clear();
             if (ConfigList.WardJump.UseWardingTotem)
-                if (ConfigList.WardJump.WardingTotemSaver > Player.Instance.InventoryItems.Count(use => (use.Id == ItemId.Warding_Totem_Trinket) && use.CanUseItem() && use.IsWard))
-                    wards.Add(ItemId.Warding_Totem_Trinket);
+                wards.Add(ItemId.Warding_Totem_Trinket);
             if (ConfigList.WardJump.UseVisionWard)
                 wards.Add(ItemId.Vision_Ward);
             if (ConfigList.WardJump.UseTrackersKnife)
@@ -48,6 +46,9 @@ namespace ReKatarina.Utility
             var wardSlot = GetWardSlot();
             if (wardSlot != null && Environment.TickCount - LastWardCast > 1500)
             {
+                if ((wardSlot.Id == ItemId.Warding_Totem_Trinket) && wardSlot.Stacks <= ConfigList.WardJump.WardingTotemSaver)
+                    return;
+
                 var mouse = Game.CursorPos;
                 var pos = mouse;
                 if (mouse.Distance(Player.Instance.Position) > SpellManager.E.Range)
