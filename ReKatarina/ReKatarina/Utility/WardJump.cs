@@ -14,29 +14,30 @@ namespace ReKatarina.Utility
         private static InventorySlot GetWardSlot()
         {
             wards.Clear();
-            //if (ConfigList.WardJump.UseWardingTotem)
-                wards.Add(ItemId.Warding_Totem_Trinket);
-            //if (ConfigList.WardJump.UseVisionWard)
+            if (ConfigList.WardJump.UseWardingTotem)
+                if (ConfigList.WardJump.WardingTotemSaver > Player.Instance.InventoryItems.Count(use => (use.Id == ItemId.Warding_Totem_Trinket) && use.CanUseItem() && use.IsWard))
+                    wards.Add(ItemId.Warding_Totem_Trinket);
+            if (ConfigList.WardJump.UseVisionWard)
                 wards.Add(ItemId.Vision_Ward);
-            //if (ConfigList.WardJump.UseTrackersKnife)
+            if (ConfigList.WardJump.UseTrackersKnife)
                 wards.Add(ItemId.Trackers_Knife);
-            //if (ConfigList.WardJump.UseSightstone)
+            if (ConfigList.WardJump.UseSightstone)
                 wards.Add(ItemId.Sightstone);
-            /*if (ConfigList.WardJump.UseRubySightstone)
+            if (ConfigList.WardJump.UseRubySightstone)
                 wards.Add(ItemId.Ruby_Sightstone);
             if (ConfigList.WardJump.UseEyeoftheWatchers)
                 wards.Add(ItemId.Eye_of_the_Watchers);
             if (ConfigList.WardJump.UseEyeoftheOasis)
                 wards.Add(ItemId.Eye_of_the_Oasis);
             if (ConfigList.WardJump.UseEyeoftheEquinox)
-                wards.Add(ItemId.Eye_of_the_Equinox);*/
-            
-            //wards.Add(ItemId.Warding_Totem_Trinket);
+                wards.Add(ItemId.Eye_of_the_Equinox);
 
             return Player.Instance.InventoryItems.FirstOrDefault(use => wards.Contains(use.Id) && use.CanUseItem() && use.IsWard);
         }
         public static void Execute()
         {
+            Orbwalker.OrbwalkTo(Game.CursorPos);
+            
             if (!SpellManager.E.IsReady() || !SpellManager.E.IsLearned)
                 return;
 
@@ -44,13 +45,10 @@ namespace ReKatarina.Utility
             if (Environment.TickCount - SpellManager.LastJumpCast < 500)
                 return;
 
-            var mouse = Game.CursorPos;
-
-            Orbwalker.OrbwalkTo(mouse);
-
             var wardSlot = GetWardSlot();
-            if (wardSlot != null && SpellManager.E.IsReady() && Environment.TickCount - LastWardCast > 1500)
+            if (wardSlot != null && Environment.TickCount - LastWardCast > 1500)
             {
+                var mouse = Game.CursorPos;
                 var pos = mouse;
                 if (mouse.Distance(Player.Instance.Position) > SpellManager.E.Range)
                     pos = Player.Instance.Position.Extend(mouse, SpellManager.E.Range).To3D();

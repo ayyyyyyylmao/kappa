@@ -32,7 +32,7 @@ namespace ReKatarina.ConfigList
         {
             Menu = Config.Menu.AddSubMenu("Wardjump");
             Menu.AddGroupLabel("Wardjump settings");
-            _WardJumpKey = Menu.Add("WardingTotem", new KeyBind("WardJump key", false, KeyBind.BindTypes.HoldActive, 'Y'));
+            _WardJumpKey = Menu.Add("WardJumpKey", new KeyBind("WardJump key", false, KeyBind.BindTypes.HoldActive, 'Y'));
 
             Menu.AddGroupLabel("Normal wards");
             _WardingTotem = Menu.Add("WardingTotem", new CheckBox("Use Warding Totem"));
