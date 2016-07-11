@@ -16,8 +16,8 @@ Included
 - Min. range to use R
 - Safe combo (customize)
 - Humanizer QWER (customize)
-- WardJump (TODO)
-- Flee mode (TODO)
+- WardJump (cutomize)
+- Flee mode (cutomize)
 
 #ReGaren
 My first own addon for Garen.
