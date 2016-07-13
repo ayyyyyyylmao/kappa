@@ -7,6 +7,7 @@ namespace ReRyze
     class Damage
     {
         public static readonly Random getrandom = new Random();
+        public static readonly int[] UltimateRange = { 1500, 3000 };
 
         public static double GetQDamage(Obj_AI_Base target)
         {

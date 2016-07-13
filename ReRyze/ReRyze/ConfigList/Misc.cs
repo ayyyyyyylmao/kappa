@@ -57,14 +57,14 @@ namespace ReRyze.ConfigList
             _KSWithQ = Menu.Add("KSWithQ", new CheckBox("Enable Kill Steal with Q."));
             _KSWithW = Menu.Add("KSWithW", new CheckBox("Enable Kill Steal with W."));
             _KSWithE = Menu.Add("KSWithE", new CheckBox("Enable Kill Steal with E."));
-            _FleeWithW = Menu.Add("FleeWithW", new CheckBox("Enable auto W in flee mode."));
+            _FleeWithW = Menu.Add("FleeWithW", new CheckBox("Enable W in flee mode."));
 
             Menu.AddGroupLabel("Skin manager");
             _SkinManagerStatus = Menu.Add("SkinManagerStatus", new CheckBox("Enable skin changer."));
             _SkinManager = Menu.Add("SkinManager", new Slider("Select your skin.", 1, 0, 10));
 
             Menu.AddGroupLabel("Humanizer");
-            _Delay = Menu.Add("Delay", new Slider("Select your delay between spells in (ms).", 200, 150, 500));
+            _Delay = Menu.Add("Delay", new Slider("Select your delay between spells in (ms).", 150, 100, 500));
             _MaxRandomDelay = Menu.Add("MaxRandomDelay", new Slider("Additional random delay in (ms).", 75, 50, 100));
         }
 

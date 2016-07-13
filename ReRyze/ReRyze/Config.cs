@@ -26,6 +26,8 @@ namespace ReRyze
                 Combo.Initialize();
                 Drawing.Initialize();
                 Farm.Initialize();
+                UltimateTeleport.Initialize();
+                Harass.Initialize();
                 ChanceHit.Initialize();
                 ManaManager.Initialize();
                 Misc.Initialize();

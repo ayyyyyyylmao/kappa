@@ -10,6 +10,7 @@ namespace ReRyze.ConfigList
         private static readonly CheckBox _ComboW;
         private static readonly CheckBox _ComboE;
         private static readonly CheckBox _ComboR;
+        private static readonly CheckBox _ComboWithoutQ;
 
         public static bool ComboQ
         {
@@ -23,9 +24,9 @@ namespace ReRyze.ConfigList
         {
             get { return _ComboE.CurrentValue; }
         }
-        public static bool ComboR
+        public static bool ComboWithoutQ
         {
-            get { return _ComboR.CurrentValue; }
+            get { return _ComboWithoutQ.CurrentValue; }
         }
 
         static Combo()
@@ -35,7 +36,7 @@ namespace ReRyze.ConfigList
             _ComboQ = Menu.Add("ComboQ", new CheckBox("Use Q in combo"));
             _ComboW = Menu.Add("ComboW", new CheckBox("Use W in combo"));
             _ComboE = Menu.Add("ComboE", new CheckBox("Use E in combo"));
-            _ComboR = Menu.Add("ComboR", new CheckBox("Use R in combo"));
+            _ComboWithoutQ = Menu.Add("ComboWithoutQ", new CheckBox("Allow combo without Q at start.", false));
         }
 
         public static void Initialize()

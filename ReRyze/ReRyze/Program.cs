@@ -75,6 +75,10 @@ namespace ReRyze
             {
                 Flee.Execute();
             }
+            if (ConfigList.UltimateTeleport.TeleportKey)
+            {
+                UltimateTeleport.Execute();
+            }
         }
         
         private static void OnDraw(EventArgs args)

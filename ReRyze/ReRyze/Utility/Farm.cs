@@ -19,7 +19,7 @@ namespace ReRyze.Utility
             if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady() && Player.Instance.ManaPercent >= ManaManager.LaneClearQ_Mana)
             {
                 var unit = target.FirstOrDefault();
-                if (unit.Health <= Damage.GetQDamage(unit) || unit.Health / Damage.GetQDamage(unit) > 2)
+                if (unit.TotalShieldHealth() <= Damage.GetQDamage(unit) || unit.TotalShieldHealth() / Damage.GetQDamage(unit) > 2)
                 {
                     var predQ = SpellManager.Q.GetPrediction(unit);
                     if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.LaneClearMinToUseQ))

@@ -63,6 +63,7 @@
     <Compile Include="ConfigList\ChanceHit.cs" />
     <Compile Include="ConfigList\ManaManager.cs" />
     <Compile Include="ConfigList\Misc.cs" />
+    <Compile Include="ConfigList\UltimateTeleport.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Utility\Indicator.cs" />
     <Compile Include="Utility\LastHit.cs" />
     <Compile Include="Utility\PermaActive.cs" />
+    <Compile Include="Utility\UltimateTeleport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

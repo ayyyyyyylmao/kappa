@@ -8,8 +8,13 @@ namespace ReRyze.Utility
 {
     public static class Combo
     {
+        private static int LastCombo = 0;
         public static void Execute()
         {
+            if (!ReRyze.ConfigList.Combo.ComboWithoutQ && !SpellManager.Q.IsReady() && Environment.TickCount - LastCombo < 2500)
+                return;
+
+            LastCombo = Environment.TickCount;
             var target = TargetSelector.GetTarget(SpellManager.Q.Range - 50, DamageType.Magical, Player.Instance.Position);
             if (target == null || !target.IsValidTarget())
                 return;

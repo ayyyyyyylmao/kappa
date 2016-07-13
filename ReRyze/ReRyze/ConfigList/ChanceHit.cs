@@ -11,6 +11,7 @@ namespace ReRyze.ConfigList
         private static readonly Slider _ComboMinToUseQ;
         private static readonly Slider _LCMinToUseQ;
         private static readonly Slider _HarassMinToUseQ;
+        private static readonly Slider _AutoHarassMinToUseQ;
 
         public static int ComboMinToUseQ
         {
@@ -27,6 +28,11 @@ namespace ReRyze.ConfigList
             get { return _HarassMinToUseQ.CurrentValue; }
         }
 
+        public static int AutoHarassMinToUseQ
+        {
+            get { return _AutoHarassMinToUseQ.CurrentValue; }
+        }
+
         public static HitChance GetHitChance(int num)
         {
             switch (num)
@@ -35,8 +41,7 @@ namespace ReRyze.ConfigList
                 case 2: return HitChance.Medium;
                 case 3: return HitChance.High;
             }
-            Chat.Print("Unknown");
-            return HitChance.Unknown;
+            return HitChance.Medium;
         }
 
         static ChanceHit()
@@ -47,6 +52,7 @@ namespace ReRyze.ConfigList
             _ComboMinToUseQ = Menu.Add("MinToUseQ", new Slider("Min. hit chance to use Q in combo.", 2, 1, 3));
             _LCMinToUseQ = Menu.Add("LCMinToUseQ", new Slider("Min. hit chance to use Q in lane clear.", 1, 1, 3));
             _HarassMinToUseQ = Menu.Add("HarassMinToUseQ", new Slider("Min. hit chance to use Q in harass mode.", 2, 1, 3));
+            _AutoHarassMinToUseQ = Menu.Add("AutoHarassMinToUseQ", new Slider("Min. hit chance to use Q in auto harass.", 1, 1, 3));
         }
 
         public static void Initialize()

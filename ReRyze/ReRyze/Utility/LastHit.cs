@@ -21,7 +21,7 @@ namespace ReRyze.Utility
                 {
                     foreach (var select in target)
                     {
-                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
+                        if (select.IsValidTarget(SpellManager.Q.Range) && select.TotalShieldHealth() < Damage.GetQDamage(select))
                         {
                             var predQ = SpellManager.Q.GetPrediction(select);
                             if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.LaneClearMinToUseQ))
