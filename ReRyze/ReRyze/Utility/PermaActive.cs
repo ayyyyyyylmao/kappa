@@ -17,16 +17,24 @@ namespace ReRyze.Utility
             }
 
             // Auto KS 
-            if (!SpellManager.R.IsReady() || !ConfigList.Misc.KSWithR)
-                return;
-
-            var target = TargetSelector.GetTarget(SpellManager.R.Range, DamageType.Magical, Player.Instance.Position);
-            if (target != null)
+            var target = TargetSelector.GetTarget(SpellManager.Q.Range, DamageType.Magical, Player.Instance.Position);
+            if (target != null && target.IsValid())
             {
-                if (Damage.GetRDamage(target) - 5 >= target.Health)
+                if (SpellManager.Q.IsReady() && ConfigList.Misc.KSWithQ && Damage.GetQDamage(target) - 5 >= target.TotalShieldHealth())
                 {
-                    SpellManager.R.Cast(target);
+                    var predQ = SpellManager.Q.GetPrediction(target);
+                    if (predQ.HitChance >= HitChance.Medium)
+                    {
+                        SpellManager.Q.Cast(predQ.CastPosition); return;
+                    }
                 }
+                if (SpellManager.W.IsReady() && ConfigList.Misc.KSWithW && Damage.GetWDamage(target) - 5 >= target.TotalShieldHealth())
+                {
+                    SpellManager.W.Cast(target); 
+                    return;
+                }
+                if (SpellManager.E.IsReady() && ConfigList.Misc.KSWithE && Damage.GetEDamage(target) - 5 >= target.TotalShieldHealth())
+                    SpellManager.E.Cast(target);
             }
         }
     }

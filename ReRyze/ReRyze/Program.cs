@@ -57,23 +57,23 @@ namespace ReRyze
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.Harass))
             {
-                //Harass.Execute();
+                Harass.Execute();
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.LastHit))
             {
-                //LastHit.Execute();
+                LastHit.Execute();
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.LaneClear))
             {
-                //Farm.Execute();
+                Farm.Execute();
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.JungleClear))
             {
-                //Farm.Execute();
+                Farm.Execute();
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.Flee))
             {
-                //Flee.Execute();
+                Flee.Execute();
             }
         }
         

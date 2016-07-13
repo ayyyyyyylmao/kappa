@@ -3,6 +3,7 @@ using EloBuddy.SDK;
 using System;
 using System.Linq;
 using EloBuddy.SDK.Enumerations;
+using ReRyze.ConfigList;
 
 namespace ReRyze.Utility
 {
@@ -10,50 +11,39 @@ namespace ReRyze.Utility
     {
         public static void Execute()
         {
-            if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady())
-            {
-                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
-                if (target.Count() == 0)
-                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range * 2));
+            var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range));
+            if (target.Count() == 0)
+                target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range));
 
-                if (target.Count() != 0)
+            int delay = Misc.GetSpellDelay + Damage.GetAditionalDelay();
+            if (ConfigList.Farm.FarmQ && SpellManager.Q.IsReady() && Player.Instance.ManaPercent >= ManaManager.LaneClearQ_Mana)
+            {
+                var unit = target.FirstOrDefault();
+                if (unit.Health <= Damage.GetQDamage(unit) || unit.Health / Damage.GetQDamage(unit) > 2)
                 {
-                    foreach (var select in target)
+                    var predQ = SpellManager.Q.GetPrediction(unit);
+                    if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.LaneClearMinToUseQ))
                     {
-                        if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
-                        {
-                            SpellManager.Q.Cast();
-                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
-                            return;
-                        }
-                        else
-                        {
-                            if (select.Health - Damage.GetQDamage(select) > 300 && select.IsValidTarget(SpellManager.Q.Range))
-                            {
-                                SpellManager.Q.Cast();
-                                Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
-                                return;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (Player.Instance.IsUnderEnemyturret())
-                    {
-                        SpellManager.Q.Cast();
+                        Core.DelayAction(() => SpellManager.Q.Cast(predQ.CastPosition), delay);
                     }
                 }
             }
-            if (ConfigList.Farm.FarmE && SpellManager.E.IsReady())
+            if (ConfigList.Farm.FarmE && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= ManaManager.LaneClearE_Mana)
             {
-                int minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.E.Range)).Count();
-                int monsters = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.E.Range * 2)).Count();
-                if ((minions + monsters) == 0)
+                var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range));
+                var monsters = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range));
+                if ((minions.Count() + monsters.Count()) == 0)
                     return;
 
-                if (minions >= ConfigList.Farm.FarmECount || (monsters > 0 && ConfigList.Farm.FarmEIgnore))
-                    SpellManager.E.Cast();
+                target = monsters;
+                if (monsters.Count() == 0)
+                    target = minions;
+
+                if (target == null)
+                    return;
+
+                if (minions.Count() >= ConfigList.Farm.FarmECount || (monsters.Count() > 0 && ConfigList.Farm.FarmEIgnore))
+                    Core.DelayAction(() => SpellManager.E.Cast(target.FirstOrDefault()), delay * 2);                
             }
         }
     }

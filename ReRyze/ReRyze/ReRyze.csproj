@@ -60,6 +60,8 @@
     <Compile Include="ConfigList\Drawing.cs" />
     <Compile Include="ConfigList\Farm.cs" />
     <Compile Include="ConfigList\Harass.cs" />
+    <Compile Include="ConfigList\ChanceHit.cs" />
+    <Compile Include="ConfigList\ManaManager.cs" />
     <Compile Include="ConfigList\Misc.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="Program.cs" />

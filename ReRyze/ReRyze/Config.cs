@@ -26,7 +26,7 @@ namespace ReRyze
                 Combo.Initialize();
                 Drawing.Initialize();
                 Farm.Initialize();
-                HitChance.Initialize();
+                ChanceHit.Initialize();
                 ManaManager.Initialize();
                 Misc.Initialize();
             }

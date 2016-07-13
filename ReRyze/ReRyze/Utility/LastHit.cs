@@ -3,6 +3,7 @@ using EloBuddy.SDK;
 using System;
 using System.Linq;
 using EloBuddy.SDK.Enumerations;
+using ReRyze.ConfigList;
 
 namespace ReRyze.Utility
 {
@@ -10,11 +11,11 @@ namespace ReRyze.Utility
     {
         public static void Execute()
         {
-            if (ConfigList.Farm.FarmQLastHit && SpellManager.Q.IsReady())
+            if (ConfigList.Farm.FarmQLastHit && SpellManager.Q.IsReady() && Player.Instance.ManaPercent >= ManaManager.LastHitQ_Mana)
             {
-                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range * 2));
+                var target = EntityManager.MinionsAndMonsters.EnemyMinions.Where(minion => minion.IsValidTarget(SpellManager.Q.Range));
                 if (target.Count() == 0)
-                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range * 2));
+                    target = EntityManager.MinionsAndMonsters.Monsters.Where(monster => monster.IsValidTarget(SpellManager.Q.Range));
 
                 if (target != null)
                 {
@@ -22,8 +23,9 @@ namespace ReRyze.Utility
                     {
                         if (select.IsValidTarget(SpellManager.Q.Range) && select.Health < Damage.GetQDamage(select))
                         {
-                            SpellManager.Q.Cast();
-                            Core.DelayAction(() => Player.IssueOrder(GameObjectOrder.AttackUnit, select), ConfigList.Misc.GetSpellDelay);
+                            var predQ = SpellManager.Q.GetPrediction(select);
+                            if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.LaneClearMinToUseQ))
+                                Core.DelayAction(() => SpellManager.Q.Cast(predQ.CastPosition), Misc.GetSpellDelay + Damage.GetAditionalDelay());
                             return;
                         }
                     }

@@ -6,19 +6,32 @@ namespace ReRyze.ConfigList
     public static class Misc
     {
         private static readonly Menu Menu;
-        private static readonly CheckBox _KSWithR;
-        private static readonly CheckBox _FleeWithQ;
+        private static readonly CheckBox _KSWithQ;
+        private static readonly CheckBox _KSWithW;
+        private static readonly CheckBox _KSWithE;
+
+        private static readonly CheckBox _FleeWithW;
+
         private static readonly CheckBox _SkinManagerStatus;
         private static readonly Slider _SkinManager;
         private static readonly Slider _Delay;
+        private static readonly Slider _MaxRandomDelay;
 
-        public static bool KSWithR
+        public static bool KSWithQ
         {
-            get { return _KSWithR.CurrentValue; }
+            get { return _KSWithQ.CurrentValue; }
         }
-        public static bool FleeWithQ
+        public static bool KSWithW
         {
-            get { return _FleeWithQ.CurrentValue; }
+            get { return _KSWithW.CurrentValue; }
+        }
+        public static bool KSWithE
+        {
+            get { return _KSWithE.CurrentValue; }
+        }
+        public static bool FleeWithW
+        {
+            get { return _FleeWithW.CurrentValue; }
         }
         public static bool GetSkinManagerStatus
         {
@@ -32,18 +45,27 @@ namespace ReRyze.ConfigList
         {
             get { return _Delay.CurrentValue; }
         }
+        public static int GetMaxAditDelay
+        {
+            get { return _MaxRandomDelay.CurrentValue; }
+        }
 
         static Misc()
         {
             Menu = Config.Menu.AddSubMenu("Misc");
             Menu.AddGroupLabel("Misc settings");
-            _KSWithR = Menu.Add("KSWithR", new CheckBox("Enable Kill Steal with R."));
-            _FleeWithQ = Menu.Add("FleeWithQ", new CheckBox("Enable auto Q in flee mode."));
+            _KSWithQ = Menu.Add("KSWithQ", new CheckBox("Enable Kill Steal with Q."));
+            _KSWithW = Menu.Add("KSWithW", new CheckBox("Enable Kill Steal with W."));
+            _KSWithE = Menu.Add("KSWithE", new CheckBox("Enable Kill Steal with E."));
+            _FleeWithW = Menu.Add("FleeWithW", new CheckBox("Enable auto W in flee mode."));
+
             Menu.AddGroupLabel("Skin manager");
             _SkinManagerStatus = Menu.Add("SkinManagerStatus", new CheckBox("Enable skin changer."));
-            _SkinManager = Menu.Add("SkinManager", new Slider("Select your skin.", 1, 0, 8));
-            Menu.AddGroupLabel("Delayer");
-            _Delay = Menu.Add("Delay", new Slider("Select your delay between AA in (ms).", 125, 50, 300));
+            _SkinManager = Menu.Add("SkinManager", new Slider("Select your skin.", 1, 0, 10));
+
+            Menu.AddGroupLabel("Humanizer");
+            _Delay = Menu.Add("Delay", new Slider("Select your delay between spells in (ms).", 200, 150, 500));
+            _MaxRandomDelay = Menu.Add("MaxRandomDelay", new Slider("Additional random delay in (ms).", 75, 50, 100));
         }
 
         public static void Initialize()

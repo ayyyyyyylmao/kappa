@@ -1,10 +1,13 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using System;
 
 namespace ReRyze
 {
     class Damage
     {
+        public static readonly Random getrandom = new Random();
+
         public static double GetQDamage(Obj_AI_Base target)
         {
             if (SpellManager.Q.IsReady())
@@ -42,6 +45,11 @@ namespace ReRyze
             damage += GetRDamage(target);
             damage += Player.Instance.GetAutoAttackDamage(target, true);
             return damage;
+        }
+
+        public static int GetAditionalDelay()
+        {
+            return getrandom.Next(0, (ConfigList.Misc.GetMaxAditDelay));
         }
     }
 }

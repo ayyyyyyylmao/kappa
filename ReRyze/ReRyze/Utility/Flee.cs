@@ -10,10 +10,14 @@ namespace ReRyze.Utility
     {
         public static void Execute()
         {
-            if (!SpellManager.Q.IsReady() || !ConfigList.Misc.FleeWithQ)
+            if (!SpellManager.W.IsReady() || !SpellManager.W.IsLearned || !ConfigList.Misc.FleeWithW)
                 return;
 
-            SpellManager.Q.Cast();
+            var target = TargetSelector.GetTarget(SpellManager.W.Range, DamageType.Magical, Player.Instance.Position);
+            if (target == null || !target.IsValidTarget())
+                return;
+
+            SpellManager.W.Cast(target);
         }
     }
 }

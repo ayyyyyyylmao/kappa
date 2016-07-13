@@ -11,6 +11,19 @@ namespace ReRyze.ConfigList
 
         private static readonly Slider _LHUseQ;
 
+        public static int LaneClearQ_Mana
+        {
+            get { return _LCUseQ.CurrentValue; }
+        }
+        public static int LaneClearE_Mana
+        {
+            get { return _LCUseE.CurrentValue; }
+        }
+        public static int LastHitQ_Mana
+        {
+            get { return _LHUseQ.CurrentValue; }
+        }
+
         static ManaManager()
         {
             Menu = Config.Menu.AddSubMenu("Mana manager");
