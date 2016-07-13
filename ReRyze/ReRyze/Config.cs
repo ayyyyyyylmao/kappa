@@ -9,8 +9,8 @@ namespace ReRyze
 
         static Config()
         {
-            Menu = MainMenu.AddMenu("ReGaren", "ReGaren");
-            Menu.AddGroupLabel("Welcome to ReGaren! It's my first addon, be patient.");
+            Menu = MainMenu.AddMenu("ReRyze", "ReRyze");
+            Menu.AddGroupLabel("Welcome to ReRyze! Please report all bugs.");
             Modes.Initialize();
         }
 
@@ -26,6 +26,8 @@ namespace ReRyze
                 Combo.Initialize();
                 Drawing.Initialize();
                 Farm.Initialize();
+                HitChance.Initialize();
+                ManaManager.Initialize();
                 Misc.Initialize();
             }
 

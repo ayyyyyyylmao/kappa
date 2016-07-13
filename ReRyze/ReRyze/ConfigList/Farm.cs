@@ -40,8 +40,8 @@ namespace ReRyze.ConfigList
             _FarmQ = Menu.Add("FarmQ", new CheckBox("Use Q in lane / jugnle clear."));
             _FarmE = Menu.Add("FarmE", new CheckBox("Use E in lane / jugnle clear."));
             Menu.AddSeparator();
-            _IgnoreECountJng = Menu.Add("IgniteECountJng", new CheckBox("Ignore E count in jungle clear."));
-            _FarmECount = Menu.Add("FarmECount", new Slider("Use E if creeps count", 3, 1, 5));
+            _IgnoreECountJng = Menu.Add("IgnoreECountJng", new CheckBox("Ignore E count in jungle clear."));
+            _FarmECount = Menu.Add("FarmECount", new Slider("Use E if creeps count", 2, 1, 5));
             Menu.AddGroupLabel("Last hit");
             _FarmQLastHit = Menu.Add("FarmQLastHit", new CheckBox("Use Q in last hit mode."));
         }
