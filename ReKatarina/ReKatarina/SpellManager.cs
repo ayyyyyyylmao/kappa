@@ -12,7 +12,7 @@ namespace ReKatarina
         public static Spell.Targeted E { get; private set; }
         public static Spell.Active R { get; private set; }
         public static Spell.Targeted Ignite { get; private set; }
-        public static bool PlayerHasIgnite = true;
+        public static bool PlayerHasIgnite = false;
         public static bool CastingUlt = false;
         public static int LastUltCast = 0;
         public static int LastJumpCast = 0;
@@ -26,6 +26,9 @@ namespace ReKatarina
             W = new Spell.Active(SpellSlot.W, 400);
             E = new Spell.Targeted(SpellSlot.E, 700);
             R = new Spell.Active(SpellSlot.R, 550);
+            Ignite = new Spell.Targeted(Player.Instance.GetSpellSlotFromName("summonerdot"), 600);
+            if (Ignite.Slot != SpellSlot.Unknown)
+                PlayerHasIgnite = true;
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

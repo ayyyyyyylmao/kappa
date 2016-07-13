@@ -1,0 +1,11 @@
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\ReRyze.exe.config
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\ReRyze.exe
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\ReRyze.pdb
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\EloBuddy.dll
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\EloBuddy.SDK.dll
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\SharpDX.dll
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\SharpDX.Direct3D9.dll
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\bin\Debug\Newtonsoft.Json.dll
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\obj\Debug\ReRyze.csprojResolveAssemblyReference.cache
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\obj\Debug\ReRyze.exe
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReRyze\ReRyze\obj\Debug\ReRyze.pdb
