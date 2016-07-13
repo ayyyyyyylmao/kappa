@@ -1,6 +1,6 @@
 # EloBuddy-Addons
 #ReKatarina
-My second own addon for EloBuddy (Katarina). Now it is pre-release, i don't recommend to use it. Kappa
+My second own addon for EloBuddy (Katarina). Now it is released. Kappa
 
 Included
 - Combo with QWER (customize)
@@ -16,8 +16,8 @@ Included
 - Min. range to use R
 - Safe combo (customize)
 - Humanizer QWER (customize)
-- WardJump (TODO)
-- Flee mode (TODO)
+- WardJump (cutomize)
+- Flee mode (cutomize)
 
 #ReGaren
 My first own addon for Garen.
