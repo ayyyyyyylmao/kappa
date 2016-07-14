@@ -41,7 +41,7 @@ namespace ReRyze.Utility
                             SpellManager.LastCombo = Environment.TickCount;
                             break;
                         }
-                        if (!Player.Instance.IsInRange(target, SpellManager.W.Range))
+                        if (!SpellManager.W.IsReady() || !Player.Instance.IsInRange(target, SpellManager.W.Range))
                             break;
 
                         Core.DelayAction(() => SpellManager.W.Cast(target), delay);

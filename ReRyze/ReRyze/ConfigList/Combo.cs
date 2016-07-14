@@ -40,7 +40,7 @@ namespace ReRyze.ConfigList
             _ComboQ = Menu.Add("ComboQ", new CheckBox("Use Q in combo"));
             _ComboW = Menu.Add("ComboW", new CheckBox("Use W in combo"));
             _ComboE = Menu.Add("ComboE", new CheckBox("Use E in combo"));
-            _ComboWithoutW = Menu.Add("ComboWithoutW", new CheckBox("Allow to skip W."));
+            _ComboWithoutW = Menu.Add("ComboWithoutW", new CheckBox("Allow to skip W.", false));
             _ComboLogic = Menu.Add("ComboLogic", new Slider("Select logic [QEQWQEQE] / [QEEQWQEQ]", 0, 0, 1));
         }
 
