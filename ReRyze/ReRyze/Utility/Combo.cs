@@ -9,58 +9,84 @@ namespace ReRyze.Utility
     {
         public static void Execute()
         {
-            var target = TargetSelector.GetTarget(SpellManager.Q.Range - 50, DamageType.Magical, Player.Instance.Position);
-            if (target == null || !target.IsValidTarget())
+            if (Environment.TickCount - SpellManager.LastCombo < Game.Ping*2)
                 return;
 
-            int delay = ConfigList.Misc.GetSpellDelay + Damage.GetAditionalDelay();
-            if (SpellManager.ComboStep >= 8)
-                SpellManager.ComboStep = 0;
+            var target = TargetSelector.GetTarget(SpellManager.Q.Range - 50, DamageType.Magical);
+            if (target == null || !target.IsValid)
+                return;
 
-            switch (ConfigList.Combo.GetComboLogic == 1 ? SpellManager.ComboMode2[SpellManager.ComboStep] : SpellManager.ComboMode1[SpellManager.ComboStep])
+            int delay = ConfigList.Misc.GetSpellDelay;
+            if (ConfigList.Combo.SmartCombo)
             {
-                case 0:
-                    {
-                        if (!SpellManager.Q.IsReady())
-                            break;
-
-                        var predQ = SpellManager.Q.GetPrediction(target);
-                        if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.ComboMinToUseQ))
-                        {
-                            SpellManager.Q.Cast(predQ.CastPosition);
-                            SpellManager.ComboStep++;
-                            SpellManager.LastCombo = Environment.TickCount;
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        if (!SpellManager.W.IsReady() && ConfigList.Combo.ComboWithoutW)
-                        {
-                            SpellManager.ComboStep++;
-                            SpellManager.LastCombo = Environment.TickCount;
-                            break;
-                        }
-                        if (!SpellManager.W.IsReady() || !Player.Instance.IsInRange(target, SpellManager.W.Range))
-                            break;
-
-                        Core.DelayAction(() => SpellManager.W.Cast(target), delay);
-                        SpellManager.ComboStep++;
-                        SpellManager.LastCombo = Environment.TickCount;
-                        break;
-                    }
-                case 2:
-                    {
-                        if (!SpellManager.E.IsReady() || !Player.Instance.IsInRange(target, SpellManager.E.Range))
-                            break;
-
-                        Core.DelayAction(() => SpellManager.E.Cast(target), delay * 2);
-                        SpellManager.ComboStep++;
-                        SpellManager.LastCombo = Environment.TickCount;
-                        break;
-                    }
+                if (SpellManager.Q.IsReady())
+                {
+                    var predQ = SpellManager.Q.GetPrediction(target);
+                    if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.ComboMinToUseQ))
+                        SpellManager.Q.Cast(predQ.CastPosition);
+                }
+                if (SpellManager.W.IsReady() && !SpellManager.Q.IsReady() && !SpellManager.E.IsReady())
+                    SpellManager.W.Cast(target);
+                
+                if (SpellManager.E.IsReady() && !SpellManager.Q.IsReady() && !Player.Instance.HasBuff("RyzeQIconFullCharge"))
+                    SpellManager.E.Cast(target);
             }
-            return;
+            else
+            {
+                if (SpellManager.ComboStep >= 8)
+                    SpellManager.ComboStep = 0;
+
+                switch (ConfigList.Combo.GetComboLogic == 1 ? SpellManager.ComboMode2[SpellManager.ComboStep] : SpellManager.ComboMode1[SpellManager.ComboStep])
+                {
+                    case 0:
+                        {
+                            if (!SpellManager.Q.IsReady())
+                            {
+                                if (ConfigList.Combo.ComboWithoutQ)
+                                    SpellManager.ComboStep++;
+                                break;
+                            }
+
+                            var predQ = SpellManager.Q.GetPrediction(target);
+                            if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.ComboMinToUseQ))
+                            {
+                                SpellManager.Q.Cast(predQ.CastPosition);
+                                SpellManager.ComboStep++;
+                            }
+                            break;
+                        }
+                    case 1:
+                        {
+                            if (!Player.Instance.IsInRange(target, SpellManager.W.Range))
+                                break;
+                            if (!SpellManager.W.IsReady())
+                            {
+                                if (ConfigList.Combo.ComboWithoutW)
+                                    SpellManager.ComboStep++;
+                                break;
+                            }
+                            Core.DelayAction(() => SpellManager.W.Cast(target), delay);
+                            SpellManager.ComboStep++;
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (!Player.Instance.IsInRange(target, SpellManager.E.Range))
+                                break;
+                            if (!SpellManager.E.IsReady())
+                            {
+                                if (ConfigList.Combo.ComboWithoutE)
+                                    SpellManager.ComboStep++;
+                                break;
+                            }
+                            Core.DelayAction(() => SpellManager.E.Cast(target), delay / 2);
+                            SpellManager.ComboStep++;
+                            break;
+                        }
+                }
+            }
+
+            SpellManager.LastCombo = Environment.TickCount;
         }
     }
 }

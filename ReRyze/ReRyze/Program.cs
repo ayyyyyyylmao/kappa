@@ -28,7 +28,6 @@ namespace ReRyze
             Drawing.OnEndScene += OnEndScene;
 
             Chat.Print("ReRyze has been loaded. GL HF;");
-            Chat.Print("Q not working? Hold shift, go Prediction settings and mark Use Beta!");
         }
 
         private static void OnEndScene(EventArgs args)
@@ -44,6 +43,7 @@ namespace ReRyze
             if (Player.Instance.IsDead || Player.Instance.IsRecalling()) 
                 return;
 
+            Orbwalker.ForcedTarget = null;
             PermaActive.Execute();
             var flags = Orbwalker.ActiveModesFlags;
             if (flags.HasFlag(Orbwalker.ActiveModes.Combo))
