@@ -16,6 +16,12 @@ namespace ReRyze.Utility
         }
         public static void Execute()
         {
+            if (Environment.TickCount - SpellManager.LastCombo > 3000)
+                SpellManager.ComboStep = 0;
+
+            if (Environment.TickCount - SpellManager.LastLaneClear > 3000)
+                SpellManager.LastLaneClear = 0;
+
             // Auto range update
             if (SpellManager.R.Level >= 2 && SpellManager.R.Range == Damage.UltimateRange[0])
                 SpellManager.R.Range = (uint)Damage.UltimateRange[1];

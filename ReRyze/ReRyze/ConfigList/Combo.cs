@@ -9,8 +9,8 @@ namespace ReRyze.ConfigList
         private static readonly CheckBox _ComboQ;
         private static readonly CheckBox _ComboW;
         private static readonly CheckBox _ComboE;
-        private static readonly CheckBox _ComboR;
-        private static readonly CheckBox _ComboWithoutQ;
+        private static readonly CheckBox _ComboWithoutW;
+        private static readonly Slider _ComboLogic;
 
         public static bool ComboQ
         {
@@ -24,9 +24,13 @@ namespace ReRyze.ConfigList
         {
             get { return _ComboE.CurrentValue; }
         }
-        public static bool ComboWithoutQ
+        public static bool ComboWithoutW
         {
-            get { return _ComboWithoutQ.CurrentValue; }
+            get { return _ComboWithoutW.CurrentValue; }
+        }
+        public static int GetComboLogic
+        {
+            get { return _ComboLogic.CurrentValue; }
         }
 
         static Combo()
@@ -36,7 +40,8 @@ namespace ReRyze.ConfigList
             _ComboQ = Menu.Add("ComboQ", new CheckBox("Use Q in combo"));
             _ComboW = Menu.Add("ComboW", new CheckBox("Use W in combo"));
             _ComboE = Menu.Add("ComboE", new CheckBox("Use E in combo"));
-            _ComboWithoutQ = Menu.Add("ComboWithoutQ", new CheckBox("Allow combo without Q at start.", false));
+            _ComboWithoutW = Menu.Add("ComboWithoutW", new CheckBox("Allow to skip W."));
+            _ComboLogic = Menu.Add("ComboLogic", new Slider("Select logic [QEQWQEQE] / [QEEQWQEQ]", 0, 0, 1));
         }
 
         public static void Initialize()

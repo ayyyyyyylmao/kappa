@@ -15,6 +15,13 @@ namespace ReRyze
         public static Spell.Targeted Ignite { get; private set; }
         public static bool PlayerHasIgnite = true;
 
+        public static readonly int[] ComboMode1 = { 0, 2, 0, 1, 0, 2, 0, 2 };
+        public static readonly int[] ComboMode2 = { 0, 2, 2, 0, 1, 0, 2, 0 };
+        public static int ComboStep;
+        public static int LaneClearStep;
+        public static int LastCombo = 0;
+        public static int LastLaneClear = 0;
+
         public static List<Spell.SpellBase> AllSpells { get; private set; }
         public static Dictionary<SpellSlot, Color> ColorTranslation { get; private set; }
 

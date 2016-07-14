@@ -10,7 +10,7 @@ namespace ReRyze.ConfigList
         private static readonly CheckBox _KSWithW;
         private static readonly CheckBox _KSWithE;
 
-        private static readonly CheckBox _FleeWithW;
+        private static readonly CheckBox _FleeWithEWQ;
 
         private static readonly CheckBox _SkinManagerStatus;
         private static readonly Slider _SkinManager;
@@ -29,9 +29,9 @@ namespace ReRyze.ConfigList
         {
             get { return _KSWithE.CurrentValue; }
         }
-        public static bool FleeWithW
+        public static bool FleeWithEWQ
         {
-            get { return _FleeWithW.CurrentValue; }
+            get { return _FleeWithEWQ.CurrentValue; }
         }
         public static bool GetSkinManagerStatus
         {
@@ -57,7 +57,7 @@ namespace ReRyze.ConfigList
             _KSWithQ = Menu.Add("KSWithQ", new CheckBox("Enable Kill Steal with Q."));
             _KSWithW = Menu.Add("KSWithW", new CheckBox("Enable Kill Steal with W."));
             _KSWithE = Menu.Add("KSWithE", new CheckBox("Enable Kill Steal with E."));
-            _FleeWithW = Menu.Add("FleeWithW", new CheckBox("Enable W in flee mode."));
+            _FleeWithEWQ = Menu.Add("FleeWithEWQ", new CheckBox("Enable EWQ in flee mode."));
 
             Menu.AddGroupLabel("Skin manager");
             _SkinManagerStatus = Menu.Add("SkinManagerStatus", new CheckBox("Enable skin changer."));

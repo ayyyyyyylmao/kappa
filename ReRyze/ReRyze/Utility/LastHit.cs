@@ -25,7 +25,7 @@ namespace ReRyze.Utility
                         {
                             var predQ = SpellManager.Q.GetPrediction(select);
                             if (predQ.HitChance >= ChanceHit.GetHitChance(ChanceHit.LaneClearMinToUseQ))
-                                Core.DelayAction(() => SpellManager.Q.Cast(predQ.CastPosition), Misc.GetSpellDelay + Damage.GetAditionalDelay());
+                                SpellManager.Q.Cast(predQ.CastPosition);
                             return;
                         }
                     }
