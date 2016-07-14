@@ -1,15 +1,9 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
-using EloBuddy.SDK.Utils;
-using SharpDX;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Color = System.Drawing.Color;
 using ReRyze.Utility;
+using System;
 
 namespace ReRyze
 {
@@ -34,6 +28,7 @@ namespace ReRyze
             Drawing.OnEndScene += OnEndScene;
 
             Chat.Print("ReRyze has been loaded. GL HF;");
+            Chat.Print("Q not working? Hold shift, go Prediction settings and mark Use Beta!");
         }
 
         private static void OnEndScene(EventArgs args)

@@ -1,9 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using System;
-using System.Linq;
-using EloBuddy.SDK.Enumerations;
 using ReRyze.ConfigList;
+using System.Linq;
 
 namespace ReRyze.Utility
 {
