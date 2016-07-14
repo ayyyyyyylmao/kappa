@@ -49,6 +49,8 @@ namespace ReRyze
             if (flags.HasFlag(Orbwalker.ActiveModes.Combo))
             {
                 Combo.Execute();
+                Orbwalker.DisableMovement = false;
+                Orbwalker.DisableAttacking = false;
             }
             if (flags.HasFlag(Orbwalker.ActiveModes.Harass))
             {

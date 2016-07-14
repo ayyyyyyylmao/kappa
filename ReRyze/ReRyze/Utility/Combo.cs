@@ -12,9 +12,12 @@ namespace ReRyze.Utility
             if (Environment.TickCount - SpellManager.LastCombo < Game.Ping*2)
                 return;
 
-            var target = TargetSelector.GetTarget(SpellManager.Q.Range - 50, DamageType.Magical);
+            var target = TargetSelector.GetTarget(SpellManager.Q.Range - 50, DamageType.Magical, Player.Instance.Position);
             if (target == null || !target.IsValid)
                 return;
+
+            Orbwalker.DisableMovement = false;
+            Orbwalker.DisableAttacking = false;
 
             int delay = ConfigList.Misc.GetSpellDelay;
             if (ConfigList.Combo.SmartCombo)
