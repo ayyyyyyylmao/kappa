@@ -58,7 +58,7 @@ namespace ReKatarina.Utility
                 wardSlot.Cast(mouse);
                 var ward = ObjectManager.Get<Obj_AI_Base>().
                             Where(a => a.IsAlly && a.IsInRange(a, SpellManager.E.Range) && a.Distance(mouse) <= 150);
-                Core.DelayAction(() => SpellManager.E.Cast(ward.FirstOrDefault()), 100 + Damage.GetAditionalDelay());
+                Core.DelayAction(() => SpellManager.E.Cast(ward.FirstOrDefault()), 0 + Damage.GetAditionalDelay());
                 LastWardCast = Environment.TickCount;
             }
         }
